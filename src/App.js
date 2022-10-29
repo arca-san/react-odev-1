@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
+
 function App() {
+  async function getText(number) {
+    let url = `https://jsonplaceholder.typicode.com/users/${number}`
+    let url2 = `https://jsonplaceholder.typicode.com/posts?userId=${number}`
+    const x = await axios.get(url).then(ret => {
+      return ret.data
+    })
+    const y = await axios.get(url2).then(ret => {
+      return ret.data
+    })
+    x.posts = y
+    console.log(x);
+    }
+  getText(1);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
     </div>
   );
 }
